@@ -1,12 +1,14 @@
 import random
 
 class Tienda:
-    def __init__(self, nombre, paginaWeb, direccion):
+    def __init__(self, nombre, paginaWeb, direccion, rangoDescuento):
         self.nombre = nombre
         self.paginaWeb = paginaWeb
         self.direccion = direccion
         self.listaDeProductos = []
         self.listaDeVendedores = []
+        self.listaDeClientes = []
+        self.rangoDescuento = rangoDescuento
         self.listaDeVentas = []
     def agregarProducto(self, productoAAgregar):
         self.listaDeProductos.append(productoAAgregar)
@@ -28,4 +30,11 @@ class Tienda:
         for vendedor in self.listaDeVendedores:
             if vendedor.documento == documento:
                 return vendedor
+            return False
+    def agregarCliente(self, cliente):
+        self.listaDeClientes.append(cliente)
+    def buscarClientePorDocumento(self, documento):
+        for cliente in self.listaDeClientes:
+            if cliente.documento == documento:
+                return cliente
             return False

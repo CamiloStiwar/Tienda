@@ -36,3 +36,11 @@ class Cliente(Persona):
         self.direccionEnvio = direccionEnvio
         self.correoFacturacion = correoFacturacion
         self.acumuladoCompra = 0
+
+    def acumular(self,monto):
+        self.acumuladoCompra = self.acumuladoCompra + monto
+    def revisarDescuento(self, rangoDescuento):
+        if int(self.acumuladoCompra) >= int(rangoDescuento):
+            return True
+        else:
+            return False
