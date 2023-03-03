@@ -24,3 +24,8 @@ class Tienda:
         self.listaDeVentas.append(ventaAAgregar)
     def agregarVendedor(self, vendedor):
         self.listaDeVendedores.append(vendedor)
+    def buscarVendedorPorDocumento(self, documento):
+        for vendedor in self.listaDeVendedores:
+            if vendedor.documento == documento:
+                return vendedor
+            return False
