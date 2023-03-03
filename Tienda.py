@@ -6,6 +6,7 @@ class Tienda:
         self.paginaWeb = paginaWeb
         self.direccion = direccion
         self.listaDeProductos = []
+        self.listaDeVendedores = []
         self.listaDeVentas = []
     def agregarProducto(self, productoAAgregar):
         self.listaDeProductos.append(productoAAgregar)
@@ -21,3 +22,5 @@ class Tienda:
                 return producto
     def agregarVenta(self, ventaAAgregar):
         self.listaDeVentas.append(ventaAAgregar)
+    def agregarVendedor(self, vendedor):
+        self.listaDeVendedores.append(vendedor)

@@ -1,6 +1,7 @@
 import random
-from tienda import Tienda
-from producto import Producto
+from Tienda import Tienda
+from Producto import Producto
+from Persona import Vendedor
 
 nombreTienda = input("Por favor digite el nombre de su tienda: ")
 paginaWebTienda = input("Por favor digite la pagina web de su tienda: ")
@@ -10,7 +11,7 @@ tienda = Tienda(nombreTienda, paginaWebTienda, direcciónTienda)
 
 while True:
     
-    operacion = input("Por favor dijite si busca un producto(I), si desea crear uno nuevo (NP), o si desea comprar un producto (V), o si quiere ver el Total de Ventas (TV): ")
+    operacion = input("Por favor dijite si busca un producto(I), si desea crear uno nuevo (NP), o si desea comprar un producto (V), o si quiere ver el Total de Ventas (TV), o si quiere crear un nuevo vendedor (NV): ")
 
     if operacion == "NP":
         nombreProducto = input("Por favor dijite el nombre del producto: ")
@@ -21,6 +22,8 @@ while True:
     elif operacion == "I":
         tienda.imprimirProductosEInventarios()
     elif operacion == "V":
+        docVendedor = input("Por favor ingerese el documento del vendedor: ")
+        vendedorEncontrado = tienda.buscarVendedorPorDocumento(docVendedor)
         nombreProducto = input("Ingrese el nombre del producto que desea comprar: ")
         productoEncontrado = tienda.buscarProductoPorNombre(nombreProducto)
         if not productoEncontrado:
@@ -32,9 +35,20 @@ while True:
                 print(f"Venta exitosa, el total de la venta fue {total} pesos.")
                 productoEncontrado.inventario = productoEncontrado.inventario - cantidadAComprar
                 tienda.agregarVenta(total)
+                vendedorEncontrado.acumular(total)
+                vendedorEncontrado.revisarObjetivo()
             else:
                 print("No hay inventario suficiente de la referencia que desea comprar.")
     elif operacion == "TV":
         print(tienda.listaDeVentas)
         sumaDeVentas = sum(tienda.listaDeVentas)
         print(sumaDeVentas)
+    elif operacion == "NV":
+        nombre = input("Por favor ingrese el nombre del nuevo vendedor: ")
+        telefono = input("Por favor ingrese el telefono del nuevo vendedor: ")
+        correo = input("Por favor ingrese el correo del nuevo vendedor: ")
+        documento = input("Por favor ingrese el documento del nuevo vendedor: ")
+        objetivo = input("Por favor ingrese el objetivo de ventas del nuevo vendedor: ")
+        docEmpresarial = input("Por favor ingrese el documento empresarial del nuevo vendedor: ")
+        nuevoVendedor = Vendedor(nombre, telefono, correo, documento, objetivo, docEmpresarial)
+        tienda.agregarVendedor(nuevoVendedor)
