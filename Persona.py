@@ -20,13 +20,13 @@ class Vendedor(Persona):
         self.acumuladoVentas = self.acumuladoVentas + monto
 
     def revisarObjetivo(self):
-        if self.acumuladoVentas >= self.objetivoVentas:
+        if int(self.acumuladoVentas) >= int(self.objetivoVentas):
             print("Has llegado al objetivo de ventas que tenias")
             print(f"Objetivo: {self.objetivoVentas}")
             print(f"Acumulado: {self.acumuladoVentas}")
             print("Felicitaciones")
         else:
-            print(f"Aún no se ha cumplido el objetivo. Faltan {self.objetivoVentas - self.acumuladoVentas}")
+            print(f"Aún no se ha cumplido el objetivo. Faltan {int(self.objetivoVentas) - int(self.acumuladoVentas)}")
 
         
 
